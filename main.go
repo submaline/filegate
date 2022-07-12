@@ -174,7 +174,11 @@ func main() {
 		})
 	})
 
-	if err := r.Run("0.0.0.0:8080"); err != nil {
+	err := r.SetTrustedProxies(nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if err := r.Run(":8080"); err != nil {
 		log.Fatalf("failed to run gin: %v", err)
 	}
 }
